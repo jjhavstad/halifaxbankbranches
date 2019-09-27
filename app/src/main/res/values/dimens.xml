@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="bank_branch_search_margin">8dp</dimen>
+    <dimen name="bank_branch_list_view_margin">8dp</dimen>
+    <dimen name="bank_branch_list_item_margin">8dp</dimen>
+    <dimen name="branch_separator_view_horizontal_margin">8dp</dimen>
+    <dimen name="branch_list_item_padding">8dp</dimen>
+    <dimen name="branch_item_drawable_padding">4dp</dimen>
+    <dimen name="branch_item_title_text_size">16sp</dimen>
+    <dimen name="branch_item_info_text_size">12sp</dimen>
+</resources>

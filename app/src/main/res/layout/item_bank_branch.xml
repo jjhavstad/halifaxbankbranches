@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.view.View"/>
+
+        <variable
+            name="viewModel"
+            type="com.halifaxbankbranches.ui.viewmodels.BranchViewModel" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/bank_branch_list_item_margin">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/branch_list_item_padding">
+
+            <TextView
+                android:id="@+id/bank_branch_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@{viewModel.name}"
+                android:ellipsize="marquee"
+                android:drawablePadding="@dimen/branch_item_drawable_padding"
+                android:drawableStart="@{safeUnbox(viewModel.expanded) ? @drawable/ic_expanded_24px : @drawable/ic_collapsed_24px}"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                style="@style/BranchTitle"/>
+
+            <ImageView
+                android:id="@+id/bank_branch_address_map_image_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scaleType="fitStart"
+                android:src="@drawable/ic_map_24px"
+                android:padding="@dimen/branch_item_drawable_padding"
+                android:visibility="@{safeUnbox(viewModel.expanded) ? View.VISIBLE : View.GONE}"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/bank_branch_address"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:visibility="@{safeUnbox(viewModel.expanded) ? View.VISIBLE : View.GONE}"
+                app:layout_constraintTop_toBottomOf="@id/bank_branch_name"
+                app:layout_constraintStart_toEndOf="@id/bank_branch_address_map_image_view"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <TextView
+                    android:id="@+id/bank_branch_address_line1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@{viewModel.addressLine1}"
+                    android:ellipsize="marquee"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    style="@style/BranchInfo"
+                    tools:text="Branch Address"/>
+
+                <TextView
+                    android:id="@+id/bank_branch_address_line2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@{viewModel.addressLine2}"
+                    android:visibility="@{safeUnbox(viewModel.showAddresLine2) ? View.VISIBLE : View.GONE}"
+                    android:ellipsize="marquee"
+                    app:layout_constraintTop_toBottomOf="@id/bank_branch_address_line1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    style="@style/BranchInfo"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/bank_branch_city_and_state"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:visibility="@{safeUnbox(viewModel.expanded) ? View.VISIBLE : View.GONE}"
+                android:text="@{viewModel.townCountryAndZipCode}"
+                android:ellipsize="marquee"
+                app:layout_constraintTop_toBottomOf="@id/bank_branch_address"
+                app:layout_constraintStart_toEndOf="@id/bank_branch_address_map_image_view"
+                style="@style/BranchInfo"
+                tools:text="City, Country, Postal Code"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:visibility="@{safeUnbox(viewModel.showPhoneNumber) ? View.VISIBLE : View.GONE}"
+                android:text="@{`CALL ` + viewModel.phoneNumber}"
+                android:ellipsize="marquee"
+                android:gravity="center_vertical"
+                android:padding="@dimen/branch_item_drawable_padding"
+                android:drawablePadding="@dimen/branch_item_drawable_padding"
+                android:drawableStart="@drawable/ic_call_24px"
+                android:autoLink="phone"
+                app:layout_constraintTop_toBottomOf="@id/bank_branch_city_and_state"
+                app:layout_constraintStart_toStartOf="parent"
+                style="@style/BranchInfo"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</layout>

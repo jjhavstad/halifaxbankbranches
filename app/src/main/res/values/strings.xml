@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Halifax Bank Branches</string>
+    <string name="app_label">Halifax Branches</string>
+    <string name="search_hint">Search for City</string>
+</resources>

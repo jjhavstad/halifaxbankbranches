@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="branch_item_title_text_size">20sp</dimen>
+    <dimen name="branch_item_info_text_size">16sp</dimen>
+</resources>
